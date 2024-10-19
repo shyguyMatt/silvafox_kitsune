@@ -1,0 +1,123 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "shape_shifting": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Shape Shifting",
+    "description": "Naturally, you have the ability to shape-shift into a fox form. While in this form you have 4 less hearts, 1 block tall, and gain a 10% speed boost. You also cannot use your off-hand, as you simply cannot hold a second item. (Primary power)"
+  },
+
+  "strong_ankles": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Strong Ankles",
+    "description": "Your strong ankles allow you to survive any height without taking fall damage."
+  },
+
+  "fox_like": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Fox-Like",
+    "description": "Due to your fox-like appearance, wolves will attack you on sight in both forms."
+  },
+
+  "physically_enchanted": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Physically Enchanted",
+    "description": "You are granted a small boost in damage (+1 damage) and speed (10%) [Adds to Fox form as well]"
+  },
+
+  "nifty_tricks_1": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Nifty Tricks",
+    "description": "As your intelligence grows, you gain a new teleportation ability. Using your Secondary power, you can teleport behind the player within a 10-block radius while leaving behind a clone of yourself in your place. (10 Sec Cooldown)"
+  },
+
+  "absorbent_tails_1": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Absorbent Tails lvl 1",
+    "description": "Your intelligence isn't the only thing you are gaining. As you gain more Tails, they begin to weigh you down when submerged in water. In addition, in the rain, your tails will soak up the water after some time. It is best to take shelter to stay dry. Campfires will help you dry off faster when sheltered."
+  },
+
+  "camouflage": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Camouflage",
+    "description": "By sneaking, you can become invisible for 10 seconds, allowing you to stay hidden. However, when in the presence of a dog/wolf, you cannot go invisible. (30 sec CD)"
+  },
+
+  "camouflage_2": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Camouflage+",
+    "description": "You can stay invisible for 20 seconds now instead of 10."    
+  },
+
+  "absorbent_tails_2": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Absorbent Tails lvl 2",
+    "description": "Your tails begin to weigh you down a bit more in water."
+  },
+
+  "life_steal": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Life Steal",
+    "description": "When attacking other mobs/players, you have a 20% chance to gain 2 absorption hearts that last 5 seconds. (Stackable)"
+  },
+
+  "flammable": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Flammable",
+    "description": "Gaining more tails has caused you to become a bit more Flammable. You now take 3x Fire/burning damage"
+  },
+
+  "nifty_tricks_2": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Nifty Tricks+",
+    "description": "Having lots more practice, you have learned to defend yourself when performing your little trick. Resistance 1 for a few seconds."
+  },
+
+  "absorbent_tails_3": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Absorbent Tails lvl 3",
+    "description": "You should probably begin avoiding water since this is starting to really weigh you down..."
+  },
+
+  "possession": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Possession",
+    "description": "Gaining all of this intelligence has allowed you to use the ability to possess other players. You have a decent array of methods that will allow you to trick and toy with you victims for a whole 90 seconds!  Why don’t you go find out what you can do for yourself. 😉 (Secondary Power) ( Then quickly find a player and right-click them. Scroll through tricks with your primary and secondary. Use LMB to execute the trick and sneak to exit possession)"
+  },
+
+  "celestial_form": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Celestial Form",
+    "description": "You have gained 5 extra hearts for a total of 15 hearts. (For both Fox and Human form). You also begin to emit flame particles, as well as light, as you carry around a fox fire by your side."
+  },
+
+  "not_quite_ready": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Not Quite Ready",
+    "description": "Though you have not been able to fly, you can perform 3 extra jumps while airborne before gracefully, slowly, falling back to the ground while holding SPACE."
+  },
+
+  "absorbent_tails_4": {
+    "hidden": false,
+    "type": "origins:simple",
+    "name": "Absorbent Tails lvl 4",
+    "description": "You already know, don't ask..."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "invis": {
+    "type": "origins:invisibility",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:invisibility_gauge",
+      "comparison": ">",
+      "compare_to": 0
+    },
+    "render_armor": false
+  },
+
+  "gauge": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true,
+      "order": 2,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:invisibility_gauge",
+        "comparison": ">",
+        "compare_to": 0
+      }
+    },
+    "min": 0,
+    "max":100
+  },
+
+  "timer": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "silvafox_kitsune:invisibility_gauge",
+      "change": -1
+    }
+  }
+}

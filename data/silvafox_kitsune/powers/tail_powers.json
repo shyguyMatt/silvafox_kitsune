@@ -1,0 +1,108 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "foxform": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale delay set pehkui:height 10 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale delay set pehkui:width 10 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:height 0.5 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:width 0.5 @s"
+      }
+      ]
+    },
+    "min_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale delay set pehkui:height 10 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale delay set pehkui:width 10 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:height 1 @s"
+      },
+      {
+          "type": "origins:execute_command",
+          "permission_level": 4,
+          "command": "scale set pehkui:width 1 @s"
+      }
+      ]
+    }
+  },
+
+  "transform": {
+    "type": "origins:active_self",
+    "key": {"key": "key.origins.primary_active"},
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": ">",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:sneaking",
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:possession_possession_time",
+          "comparison": "==",
+          "compare_to": 0
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:tail_powers_foxform",
+        "comparison": "==",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:change_resource",
+        "resource": "silvafox_kitsune:tail_powers_foxform",
+        "operation": "set",
+        "change": 1
+      },
+      "else_action": {
+        "type": "origins:change_resource",
+        "resource": "silvafox_kitsune:tail_powers_foxform",
+        "operation": "set",
+        "change": 0
+      }
+    }
+  }
+}

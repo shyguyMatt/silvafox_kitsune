@@ -1,0 +1,5 @@
+{
+  "name": "Absorbent Tails",
+  "description": "As you gain more Tails, they begin to weigh you down when soaked in water. In addition, in the rain, your tails will soak up the water after some time. It is best to take shelter to stay dry. Campfires will help you dry off faster when sheltered.\n§f3-4 Tails: Slowness 1 for 10 seconds §r\n§f5-6 Tails: Slowness 2 for 15 seconds §r\n§f7-8 Tails: Slowness 3 for 15 seconds §r\n§f9 tails: Slowness 4 for 15 seconds §r",
+  "type": "origins:simple"
+}

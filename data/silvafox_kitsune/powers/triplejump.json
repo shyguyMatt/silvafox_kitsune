@@ -1,0 +1,734 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "particles": {
+    "type": "origins:action_over_time",
+    "interval": 2,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:triplejump_counter",
+      "comparison": ">",
+      "compare_to": 0
+    },
+    "entity_action": {
+      "type": "origins:spawn_particles",
+      "particle": "minecraft:end_rod",
+      "count": 1,
+      "speed": 0,
+      "force": true,
+      "offset_y": -0.5
+    }
+  },
+
+  "counter": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+      "bar_index": 23,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:triplejump_counter",
+        "comparison": ">",
+        "compare_to": 0
+      }
+    },
+    "min": 0,
+    "max": 3
+  },
+
+  "grounded": {
+    "type": "origins:action_over_time",
+    "interval": 1,
+    "condition": {
+      "type": "origins:on_block"
+    },
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "silvafox_kitsune:triplejump_counter",
+      "operation": "set",
+      "change": 0
+    }
+  },
+
+  "airjump": {
+    "type": "origins:active_self",
+    "key": {
+      "key": "key.jump"
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:advancement",
+          "advancement": "minecraft:end/kill_dragon",
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:triplejump_counter",
+          "comparison": "<",
+          "compare_to": 3
+        },
+        {
+          "type": "origins:submerged_in",
+          "fluid": "minecraft:water",
+          "inverted": true
+        },
+        {
+          "type": "origins:on_block",
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": "==",
+          "compare_to": 9
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:if_else_list",
+      "actions": [
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting"
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": "<=",
+                "compare_to": 1
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 0.8,
+                "z": 0.5
+              },
+              {
+                "type": "origins:if_else_list",
+                "actions": [
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.5
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 1
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.61
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 2
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 1
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting",
+                "inverted": true
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": "<=",
+                "compare_to": 1
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 0.8,
+                "z": 0.3
+              },
+              {
+                "type": "origins:if_else_list",
+                "actions": [
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.5
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 1
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.61
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 2
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 1
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting"
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": ">=",
+                "compare_to": 2
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 1,
+                "z": 0.7
+              },
+              {
+                "type": "origins:if_else_list",
+                "actions": [
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.5
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 1
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.61
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 2
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 1
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting",
+                "inverted": true
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": ">=",
+                "compare_to": 2
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 1,
+                "z": 0.5
+              },
+              {
+                "type": "origins:if_else_list",
+                "actions": [
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.5
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 1
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 0.61
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 2
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "origins:play_sound",
+                      "sound": "minecraft:entity.arrow.hit_player",
+                      "volume": 1,
+                      "pitch": 1
+                    },
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:triplejump_counter",
+                      "comparison": "==",
+                      "compare_to": 3
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+
+  "airjump_after_dragon": {
+    "type": "origins:active_self",
+    "key": {
+      "key": "key.jump"
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:advancement",
+          "advancement": "minecraft:end/kill_dragon"
+        },
+        {
+          "type": "origins:submerged_in",
+          "fluid": "minecraft:water",
+          "inverted": true
+        },
+        {
+          "type": "origins:on_block",
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": "==",
+          "compare_to": 9
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:if_else_list",
+      "actions": [
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting"
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": "<=",
+                "compare_to": 1
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 0.8,
+                "z": 0.5
+              },
+              {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.amethyst_block.resonate",
+                    "volume": 1,
+                    "pitch": 1.15
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.player.levelup",
+                    "volume": 0.7,
+                    "pitch": 1.73
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.arrow.hit_player",
+                    "volume": 0.3,
+                    "pitch": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting",
+                "inverted": true
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": "<=",
+                "compare_to": 1
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 0.8,
+                "z": 0.3
+              },
+              {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.amethyst_block.resonate",
+                    "volume": 1,
+                    "pitch": 1.15
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.player.levelup",
+                    "volume": 0.7,
+                    "pitch": 1.73
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.arrow.hit_player",
+                    "volume": 0.3,
+                    "pitch": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting"
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": ">=",
+                "compare_to": 2
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 1,
+                "z": 0.7
+              },
+              {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.amethyst_block.resonate",
+                    "volume": 1,
+                    "pitch": 1.15
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.player.levelup",
+                    "volume": 0.7,
+                    "pitch": 1.73
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.arrow.hit_player",
+                    "volume": 0.3,
+                    "pitch": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sprinting",
+                "inverted": true
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "comparison": ">=",
+                "compare_to": 2
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:triplejump_counter",
+                "operation": "add",
+                "change": 1
+              },
+              {
+                "type": "origins:add_velocity",
+                "space": "local",
+                "set": true,
+                "y": 1,
+                "z": 0.5
+              },
+              {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.amethyst_block.resonate",
+                    "volume": 1,
+                    "pitch": 1.15
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.player.levelup",
+                    "volume": 0.7,
+                    "pitch": 1.73
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.arrow.hit_player",
+                    "volume": 0.3,
+                    "pitch": 1
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+
+  "slowfall": {
+    "type": "origins:active_self",
+    "cooldown": 6,
+    "key": {
+      "key": "key.jump",
+      "continuous": true
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:on_block",
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": "==",
+          "compare_to": 9
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:triplejump_counter",
+          "comparison": ">",
+          "compare_to": 0
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:apply_effect",
+      "effect": {
+        "effect": "minecraft:slow_falling",
+        "amplifier": 0,
+        "duration": 8,
+        "show_particles": false
+      }
+    }
+  }
+}

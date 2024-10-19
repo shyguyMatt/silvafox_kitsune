@@ -1,0 +1,158 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "active": {
+    "type": "origins:active_self",
+    "key": {"key": "key.use"},
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:sneaking"
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": ">=",
+          "compare_to": 3
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:nifty_tricks_cooldown",
+          "comparison": "==",
+          "compare_to": 50
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:possession_possession_time",
+          "comparison": "==",
+          "compare_to": 0
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:raycast",
+      "distance": 10,
+      "block": false,
+      "entity": true,
+      "shape_type": "visual",
+      "fluid_handling": "none",
+      "bientity_condition": {
+        "type": "origins:target_condition",
+        "condition": {
+          "type": "origins:living"
+        }
+      },
+      "bientity_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:target_action",
+            "action": {
+              "type": "origins:grant_power",
+              "power": "silvafox_kitsune:nifty_tricks_target",
+              "source": "silvafox_kitsune:kitsune"
+            }
+          },
+          {
+            "type": "origins:actor_action",
+            "action": {
+              "type": "origins:delay",
+              "ticks": 2,
+              "action": {
+                "type": "origins:and",
+                "actions": [
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:block.beacon.power_select",
+                    "volume": 1,
+                    "pitch": 1.42
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.allay.item_thrown",
+                    "volume": 0.35,
+                    "pitch": 0.5
+                  },
+                  {
+                    "type": "origins:play_sound",
+                    "sound": "minecraft:entity.allay.ambient_with_item",
+                    "volume": 0.57,
+                    "pitch": 1.15
+                  },
+                  {
+                    "type": "origins:execute_command",
+                    "command": "tp @s @e[limit=1,tag=silvafox_kitsune.nifty_tricks_target,sort=nearest]"
+                  },
+                  {
+                    "type": "origins:delay",
+                    "ticks": 2,
+                    "action": {
+                      "type": "origins:execute_command",
+                      "command": "tp @s ^ ^0.2 ^-1.5 facing entity @e[limit=1,tag=silvafox_kitsune.nifty_tricks_target,sort=nearest]"
+                    }
+                  },
+                  {
+                    "type": "origins:change_resource",
+                    "resource": "silvafox_kitsune:nifty_tricks_cooldown",
+                    "operation": "set",
+                    "change": 0
+                  },
+                  {
+                    "type": "origins:if_else",
+                    "condition": {
+                      "type": "origins:resource",
+                      "resource": "silvafox_kitsune:tails_tails",
+                      "comparison": ">=",
+                      "compare_to": 7
+                    },
+                    "if_action": {
+                      "type": "origins:apply_effect",
+                      "effect": {
+                        "effect": "minecraft:resistance",
+                        "amplifier": 0,
+                        "duration": 100,
+                        "show_particles": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "clock": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "silvafox_kitsune:nifty_tricks_cooldown",
+      "operation": "add",
+      "change": 1
+    }
+  },
+
+  "cooldown": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+      "bar_index": 9,
+      "order": 1,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:nifty_tricks_cooldown",
+        "comparison": "!=",
+        "compare_to": 50
+      }
+    },
+    "start_value": 50,
+    "min": 0,
+    "max": 50
+  }
+}

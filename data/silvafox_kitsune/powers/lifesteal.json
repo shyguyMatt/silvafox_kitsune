@@ -1,0 +1,223 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "clock": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:lifesteal_stack_one_timer",
+          "operation": "add",
+          "change": -1
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:lifesteal_stack_two_timer",
+          "operation": "add",
+          "change": -1
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:lifesteal_stack_three_timer",
+          "operation": "add",
+          "change": -1
+        }
+      ]
+    }
+  },
+
+  "hit": {
+    "type": "origins:action_on_hit",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tails_tails",
+      "comparison": ">=",
+      "compare_to": 6
+    },
+    "bientity_action": {
+      "type": "origins:actor_action",
+      "action": {
+        "type": "origins:chance",
+        "chance": 0.2,
+        "action": {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:lifesteal_stack_one_timer",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          "if_action": {
+            "type": "origins:and",
+            "actions": [
+              {
+                "type": "origins:change_resource",
+                "resource": "silvafox_kitsune:lifesteal_stack_one_timer",
+                "operation": "set",
+                "change": 50
+              },
+              {
+                "type": "origins:play_sound",
+                "sound": "minecraft:block.amethyst_block.chime",
+                "volume": 1,
+                "pitch": 0.6
+              },
+              {
+                "type": "origins:play_sound",
+                "sound": "minecraft:block.amethyst_block.chime",
+                "volume": 1,
+                "pitch": 0.82
+              },
+              {
+                "type": "origins:play_sound",
+                "sound": "minecraft:entity.phantom.bite",
+                "volume": 0.82,
+                "pitch": 0.5
+              }
+            ]
+          },
+          "else_action": {
+            "type": "origins:if_else",
+            "condition": {
+              "type": "origins:resource",
+              "resource": "silvafox_kitsune:lifesteal_stack_two_timer",
+              "comparison": "==",
+              "compare_to": 0
+            },
+            "if_action": {
+              "type": "origins:and",
+              "actions": [
+                {
+                  "type": "origins:change_resource",
+                  "resource": "silvafox_kitsune:lifesteal_stack_two_timer",
+                  "operation": "set",
+                  "change": 50
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:block.amethyst_block.chime",
+                  "volume": 1,
+                  "pitch": 0.6
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:block.amethyst_block.chime",
+                  "volume": 1,
+                  "pitch": 0.82
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:entity.phantom.bite",
+                  "volume": 0.82,
+                  "pitch": 0.5
+                }
+              ]
+            },
+            "else_action": {
+              "type": "origins:and",
+              "actions": [
+                {
+                  "type": "origins:change_resource",
+                  "resource": "silvafox_kitsune:lifesteal_stack_three_timer",
+                  "operation": "set",
+                  "change": 50
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:block.amethyst_block.chime",
+                  "volume": 1,
+                  "pitch": 0.6
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:block.amethyst_block.chime",
+                  "volume": 1,
+                  "pitch": 0.82
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:entity.phantom.bite",
+                  "volume": 0.82,
+                  "pitch": 0.5
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "stack_one": {
+    "type": "origins:conditioned_attribute",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:lifesteal_stack_one_timer",
+      "comparison": ">",
+      "compare_to": 0
+    },
+    "tick_rate": 4,
+    "modifier": {
+      "attribute": "minecraft:generic.max_health",
+      "operation": "addition",
+      "value": 4
+    }
+  },
+
+  "stack_one_timer": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 50
+  },
+
+  "stack_two": {
+    "type": "origins:conditioned_attribute",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:lifesteal_stack_two_timer",
+      "comparison": ">",
+      "compare_to": 0
+    },
+    "tick_rate": 4,
+    "modifier": {
+      "attribute": "minecraft:generic.max_health",
+      "operation": "addition",
+      "value": 4
+    }
+  },
+
+  "stack_two_timer": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 50
+  },
+
+  "stack_three": {
+    "type": "origins:conditioned_attribute",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:lifesteal_stack_three_timer",
+      "comparison": ">",
+      "compare_to": 0
+    },
+    "tick_rate": 4,
+    "modifier": {
+      "attribute": "minecraft:generic.max_health",
+      "operation": "addition",
+      "value": 4
+    }
+  },
+
+  "stack_three_timer": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 50
+  }
+}

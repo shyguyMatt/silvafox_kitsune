@@ -1,0 +1,236 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "tails": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "silvafox_kitsune_textures:resources/resource_bar.png",
+      "bar_index": 0,
+      "order": 0
+    },
+    "min": 0,
+    "max": 9
+  },
+
+  "gain_tail": {
+    "type": "origins:active_self",
+    "key": {
+      "key": "key.origins.primary_active"
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:sneaking"
+        },
+        {
+          "type": "origins:xp_levels",
+          "comparison": ">=",
+          "compare_to": 15
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": "<",
+          "compare_to": 9
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.fox.ambient",
+          "volume": 0.81,
+          "pitch": 1
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.player.levelup",
+          "volume": 0.2,
+          "pitch": 0.9
+        },
+        {
+          "type": "origins:add_xp",
+          "levels": -15
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "operation": "add",
+          "change": 1
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:tails_add_desc",
+          "operation": "set",
+          "change": 1
+        }
+      ]
+    }
+  },
+
+  "lose_tail": {
+    "type": "origins:action_on_death",
+    "bientity_action": {
+      "type": "origins:target_action",
+      "action": {
+        "type": "origins:chance",
+        "chance": 0.25,
+        "action": {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "operation": "add",
+          "change": -1
+        }
+      }
+    }
+  },
+
+  "add_desc": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 1
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl1_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 2
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl2_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 3
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl3_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 4
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl4_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 5
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl5_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 6
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl6_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 7
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl7_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 8
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl8_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": "==",
+            "compare_to": 9
+          },
+          "if_action": {
+            "type": "origins:grant_power",
+            "power": "silvafox_kitsune:lvl9_desc",
+            "source": "silvafox_kitsune:kitsune"
+          }
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:tails_add_desc",
+          "operation": "set",
+          "change": 0
+        }
+      ]
+    }
+  }
+}

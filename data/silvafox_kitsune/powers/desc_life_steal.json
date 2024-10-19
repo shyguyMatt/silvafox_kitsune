@@ -1,0 +1,5 @@
+{
+  "name": "Life Steal",
+  "description": "§f(6th Tail)§r\nWhen attacking other mobs/players, you have a 20% chance to gain 2 extra hearts that last a few seconds each.",
+  "type": "origins:simple"
+}

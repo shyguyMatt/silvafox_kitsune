@@ -1,0 +1,493 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "clock": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:if_else_list",
+      "actions": [
+        {
+          "condition": {
+            "type": "origins:in_block",
+            "block_condition": {
+              "type": "origins:block",
+              "block": "minecraft:water"
+            }
+          },
+          "action": {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:passives_wetness",
+            "operation": "set",
+            "change": 450
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:in_rain"
+              },
+              {
+                "type": "origins:exposed_to_sky"
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:passives_wetness",
+            "operation": "add",
+            "change": 3
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:block_in_radius",
+            "block_condition": {
+              "type": "origins:block",
+              "block": "minecraft:campfire"
+            },
+            "radius": 4,
+            "shape": "sphere",
+            "comparison": ">=",
+            "compare_to": 1
+          },
+          "action": {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:passives_wetness",
+            "operation": "add",
+            "change": -2
+          }
+        },
+
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:in_block",
+                "block_condition": {
+                  "type": "origins:block",
+                  "block": "minecraft:water"
+                },
+                "inverted": true
+              },
+              {
+                "type": "origins:in_rain",
+                "inverted": true
+              },
+              {
+                "type": "origins:block_in_radius",
+                "block_condition": {
+                  "type": "origins:block",
+                  "block": "minecraft:campfire"
+                },
+                "radius": 4,
+                "shape": "sphere",
+                "comparison": ">=",
+                "compare_to": 1,
+                "inverted": true
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:passives_wetness",
+            "operation": "add",
+            "change": -1
+          }
+        }
+      ]
+    }
+  },
+
+  "berrybush_immunity": {
+    "type": "origins:invulnerability",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tail_powers_foxform",
+      "comparison": "==",
+      "compare_to": 1
+    },
+    "damage_condition": {
+      "type": "origins:name",
+      "name": "sweetBerryBush"
+    }
+  },
+
+  "berrybush_slow": {
+    "type": "origins:phasing",
+    "block_condition": {
+      "type": "origins:block",
+      "block": "minecraft:sweet_berry_bush"
+    },
+    "render_type": "none",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tail_powers_foxform",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+
+  "strong_ankles": {
+    "type": "origins:invulnerability",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tails_tails",
+      "comparison": ">",
+      "compare_to": 0
+    },
+    "damage_condition": {
+      "type": "origins:name",
+      "name": "fall"
+    }
+  },
+
+  "foxspeed": {
+    "type": "origins:conditioned_attribute",
+    "tick_rate": 4,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tail_powers_foxform",
+      "comparison": "==",
+      "compare_to": 1
+    },
+    "modifiers": [
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "multiply_total",
+        "value": 0.3 
+      }
+    ]
+  },
+
+  "foxhealth": {
+    "type": "origins:conditioned_attribute",
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tail_powers_foxform",
+          "comparison": "==",
+          "compare_to": 1
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": "<",
+          "compare_to": 9
+        }
+      ]
+    },
+    "modifier": {
+      "attribute": "minecraft:generic.max_health",
+      "operation": "addition",
+      "value": -8
+    },
+    "tick_rate": 4
+  },
+
+  "fox_no_offhand": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tail_powers_foxform",
+      "comparison": "==",
+      "compare_to": 1
+    },
+    "entity_action": {
+      "type": "origins:drop_inventory",
+      "slot": "weapon.offhand",
+      "inventory_type": "inventory"
+    }
+  },
+
+  "physically_enchanted_damage": {
+    "type": "origins:modify_damage_dealt",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tails_tails",
+      "comparison": ">",
+      "compare_to": 1
+    },
+    "modifier": {
+      "operation": "addition",
+      "value": 0.1
+    }
+  },
+
+  "physically_enchanted_speed": {
+    "type": "origins:conditioned_attribute",
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": ">",
+          "compare_to": 1
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tail_powers_foxform",
+          "comparison": "==",
+          "compare_to": 0
+        }
+      ]
+    },
+    "modifier": {
+      "attribute": "minecraft:generic.movement_speed",
+      "operation": "addition",
+      "value": 0.02
+    }
+  },
+
+  "increased_hunger": {
+    "type": "origins:modify_exhaustion",
+    "modifier": {
+      "operation": "multiply_base",
+      "value": 1
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tails_tails",
+      "comparison": ">=",
+      "compare_to": 2
+    }
+  },
+
+  "wolf_ire": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:tails_tails",
+        "comparison": ">",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:execute_command",
+        "command": "execute as @e[type=minecraft:wolf, distance=..16] run data modify entity @s AngryAt set from entity @p UUID",
+        "permission_level": 4
+      }
+    },
+    "interval": 10
+  },
+
+  "flammable": {
+    "type": "origins:modify_damage_taken",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tails_tails",
+      "comparison": ">=",
+      "compare_to": 6
+    },
+    "damage_condition": {
+      "type": "origins:fire"
+    },
+    "modifier": {
+      "operation": "multiply_base",
+      "value": 2
+    }
+  },
+  
+  "wetness": {
+    "type": "origins:resource",
+    "hud_render": {
+      "condition": {
+        "type": "origins:and",
+        "conditions": [
+          {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:passives_wetness",
+            "comparison": ">",
+            "compare_to": 0
+          },
+          {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": ">=",
+            "compare_to": 3
+          }
+        ]
+      },
+      "sprite_location": "origins:textures/gui/community/huang/resource_bar_02.png",
+      "bar_index": 16
+    },
+    "min": 0,
+    "max": 450
+  },
+
+  "absorbent_tails": {
+    "type": "origins:action_over_time",
+    "interval": 2,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:passives_wetness",
+      "comparison": "==",
+      "compare_to": 450
+    },
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:tails_tails",
+                "comparison": ">",
+                "compare_to": 2
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:tails_tails",
+                "comparison": "<",
+                "compare_to": 5
+              }
+            ]
+          },
+          "if_action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:slowness",
+              "duration": 200,
+              "amplifier": 0
+            }
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:tails_tails",
+                "comparison": ">",
+                "compare_to": 4
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:tails_tails",
+                "comparison": "<",
+                "compare_to": 7
+              }
+            ]
+          },
+          "if_action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:slowness",
+              "duration": 300,
+              "amplifier": 1
+            }
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:tails_tails",
+                "comparison": ">",
+                "compare_to": 6
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:tails_tails",
+                "comparison": "<",
+                "compare_to": 9
+              }
+            ]
+          },
+          "if_action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:slowness",
+              "duration": 300,
+              "amplifier": 2
+            }
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": ">",
+            "compare_to": 8
+          },
+          "if_action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:slowness",
+              "duration": 300,
+              "amplifier": 3
+            }
+          }
+        }
+      ]
+    }
+  },
+
+  "celestialform": {
+    "type": "origins:conditioned_attribute",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:tails_tails",
+      "comparison": "==",
+      "compare_to": 9
+    },
+    "modifier": {
+      "attribute": "minecraft:generic.max_health",
+      "operation": "addition",
+      "value": 10
+    }
+  },
+
+  "celestialform_particles": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:tails_tails",
+          "comparison": "==",
+          "compare_to": 9
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:invisibility_gauge",
+          "comparison": "==",
+          "compare_to": 0
+        },
+        {
+          "type": "origins:resource",
+          "resource": "silvafox_kitsune:possession_timer",
+          "comparison": "==",
+          "compare_to": 0
+        }
+      ]
+    },
+    "entity_action": {
+      "type": "origins:spawn_particles",
+      "particle": "minecraft:soul_fire_flame",
+      "count": 1
+    }
+  }
+}

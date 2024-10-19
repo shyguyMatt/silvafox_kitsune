@@ -1,0 +1,216 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+
+  "activate": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:camouflage_wolf_sight",
+          "change": -1
+        },
+        {
+          "type": "origins:area_of_effect",
+          "radius": 8,
+          "bientity_condition": {
+            "type": "origins:invert",
+            "condition": {
+              "type": "origins:and",
+              "conditions": [
+                {
+                  "type": "origins:can_see"
+                },
+                {
+                  "type": "origins:actor_condition",
+                  "condition": {
+                    "type": "origins:entity_type",
+                    "entity_type": "minecraft:wolf"
+                  }
+                }
+              ]
+            }
+          },
+          "bientity_action": {
+            "type": "origins:actor_action",
+            "action": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:camouflage_wolf_sight",
+              "operation": "set",
+              "change": 5
+            }
+          }
+        },
+        {
+          "type": "origins:if_else",
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:sneaking"
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:possession_timer",
+                "comparison": "==",
+                "compare_to": 0
+              },
+              {
+                "type": "origins:resource",
+                "resource": "silvafox_kitsune:possession_possession_time",
+                "comparison": "==",
+                "compare_to": 0
+              }
+            ]
+          },
+          "if_action": {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:camouflage_gauge",
+            "operation": "add",
+            "change": 5             
+          },
+          "else_action": {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:camouflage_gauge",
+            "operation": "set",
+            "change": 0
+          }
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:camouflage_cooldown",
+          "operation": "add",
+          "change": 1
+        }
+      ]
+    }
+  },
+
+  "gauge": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 30,
+    "max_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:and",
+        "conditions": [
+          {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:camouflage_wolf_sight",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:camouflage_cooldown",
+            "comparison": "==",
+            "compare_to": 150
+          },
+          {
+            "type": "origins:resource",
+            "resource": "silvafox_kitsune:tails_tails",
+            "comparison": ">",
+            "compare_to": 3
+          }
+        ]
+      },
+      "if_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:if_else",
+            "condition": {
+              "type": "origins:resource",
+              "resource": "silvafox_kitsune:tails_tails",
+              "comparison": ">",
+              "compare_to": 4
+            },
+            "if_action": {
+              "type": "origins:and",
+              "actions": [
+                {
+                  "type": "origins:change_resource",
+                  "resource": "silvafox_kitsune:invisibility_gauge",
+                  "operation": "set",
+                  "change": 100
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:block.fire.extinguish",
+                  "volume": 1,
+                  "pitch": 1.8
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:entity.fox.teleport",
+                  "volume": 0.9,
+                  "pitch": 1
+                }
+              ]
+            },
+            "else_action": {
+              "type": "origins:and",
+              "actions": [
+                {
+                  "type": "origins:change_resource",
+                  "resource": "silvafox_kitsune:invisibility_gauge",
+                  "operation": "set",
+                  "change": 50
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:block.fire.extinguish",
+                  "volume": 1,
+                  "pitch": 1.8
+                },
+                {
+                  "type": "origins:play_sound",
+                  "sound": "minecraft:entity.fox.teleport",
+                  "volume": 0.9,
+                  "pitch": 1
+                }
+              ]
+            }
+          },
+          {
+            "type": "origins:change_resource",
+            "resource": "silvafox_kitsune:camouflage_cooldown",
+            "operation": "set",
+            "change": 0
+          }
+        ]
+      }
+    }
+  },
+
+  "wolf_sight": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 5
+  },
+
+  "cooldown": {
+    "type": "origins:resource",
+    "hud_render": {
+      "should_render": true,
+      "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+      "bar_index": 9,
+      "order": 1,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:camouflage_cooldown",
+        "comparison": "!=",
+        "compare_to": 150
+      }
+    },
+    "start_value": 150,
+    "min": 0,
+    "max": 150
+  }
+}

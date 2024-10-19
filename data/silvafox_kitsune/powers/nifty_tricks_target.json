@@ -1,0 +1,54 @@
+{
+  "type": "origins:multiple",
+  "hidden": true,
+  
+  "initialize": {
+    "type": "origins:action_on_callback",
+    "entity_action_added": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "tag @s add silvafox_kitsune.nifty_tricks_target"
+        },
+        {
+          "type": "origins:execute_command",
+          "command": "/particle dust_color_transition 0.26 0.26 0.26 4 0 0 0 ~ ~1 ~ 0 0 0 5 20 force @p[y=~1,dx=10,dy=10,dz=10,distance=0.1..10]"
+        }
+      ]
+    },
+    "entity_action_removed": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "tag @s remove silvafox_kitsune.nifty_tricks_target"
+        }
+      ]
+    }
+  },
+
+  "clock": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "silvafox_kitsune:nifty_tricks_target_time_gauge",
+      "operation": "add",
+      "change": -1
+    }
+  },
+
+  "time_gauge": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 50,
+    "start_value": 50,
+    "min_action": {
+      "type": "origins:revoke_power",
+      "power": "silvafox_kitsune:nifty_tricks_target",
+      "source": "silvafox_kitsune:kitsune"
+    }
+  }
+}

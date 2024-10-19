@@ -1,0 +1,737 @@
+{
+  "type": "origins:multiple",
+
+  "name": "possessed",
+  "description": "You have been possessed by a kitsune",
+
+  "initialize": {
+    "type": "origins:action_on_callback",
+    "entity_action_added": {
+      "type": "origins:execute_command",
+      "command": "tag @s add silvafox_kitsune.possessed"
+    },
+    "entity_action_removed": {
+      "type": "origins:execute_command",
+      "command": "tag @s remove silvafox_kitsune.possessed"
+    }
+  },
+
+  "clock": {
+    "type": "origins:action_over_time",
+    "interval": 4,
+    "entity_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity_time",
+          "operation": "add",
+          "change": -1
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity_forward",
+          "operation": "add",
+          "change": -2
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity_backward",
+          "operation": "add",
+          "change": -2
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity_left",
+          "operation": "add",
+          "change": -2
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity_right",
+          "operation": "add",
+          "change": -2
+        }
+      ]
+    }
+  },
+
+  "insanity_v_forward": {
+    "type": "origins:modify_velocity",
+    "modifier": {
+      "value": 0.2,
+      "operation": "set_base"
+    },
+    "axes": [
+      "x"
+    ],
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:possessed_insanity_forward",
+      "comparison": ">",
+      "compare_to": 0
+    }
+  },
+
+  "insanity_forward": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 30,
+    "min_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:possessed_insanity_time",
+        "comparison": ">",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:choice",
+        "actions": [
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 30
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "insanity_v_backward": {
+    "type": "origins:modify_velocity",
+    "modifier": {
+      "value": -0.2,
+      "operation": "set_base"
+    },
+    "axes": [
+      "x"
+    ],
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:possessed_insanity_backward",
+      "comparison": ">",
+      "compare_to": 0
+    }
+  },
+
+  "insanity_backward": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 30,
+    "min_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:possessed_insanity_time",
+        "comparison": ">",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:choice",
+        "actions": [
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 30
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "insanity_v_left": {
+    "type": "origins:modify_velocity",
+    "modifier": {
+      "value": 0.2,
+      "operation": "set_base"
+    },
+    "axes": [
+      "z"
+    ],
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:possessed_insanity_left",
+      "comparison": ">",
+      "compare_to": 0
+    }
+  },
+
+  "insanity_left": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 30,
+    "min_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:possessed_insanity_time",
+        "comparison": ">",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:choice",
+        "actions": [
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 30
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "insanity_v_right": {
+    "type": "origins:modify_velocity",
+    "modifier": {
+      "value": 0.2,
+      "operation": "set_base"
+    },
+    "axes": [
+      "z"
+    ],
+    "condition": {
+      "type": "origins:resource",
+      "resource": "silvafox_kitsune:possessed_insanity_right",
+      "comparison": ">",
+      "compare_to": 0
+    }
+  },
+
+  "insanity_right": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 30,
+    "min_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:possessed_insanity_time",
+        "comparison": ">",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:choice",
+        "actions": [
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 16,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 30
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "insanity_time": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 100,
+    "max_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "silvafox_kitsune:possessed_insanity_time",
+        "comparison": ">",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:choice",
+        "actions": [
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_backward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_forward",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_left",
+              "operation": "set",
+              "change": 30
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 15
+            }
+          },
+          {
+            "weight": 12,
+            "element": {
+              "type": "origins:change_resource",
+              "resource": "silvafox_kitsune:possessed_insanity_right",
+              "operation": "set",
+              "change": 30
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "betrayal": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action" :{
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:execute_command",
+          "command": "tp @s ~ ~ ~ facing entity @p[distance=0.1..15,sort=nearest,limit=1]"
+        },
+        {
+          "type": "origins:delay",
+          "ticks": 2,
+          "action": {
+            "type": "origins:add_velocity",
+            "space": "local",
+            "z": 1
+          }
+        },
+        {
+          "type": "origins:delay",
+          "ticks": 4,
+          "action": {
+            "type": "origins:swing_hand",
+            "hand": "MAIN_HAND"
+          }
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_betrayal",
+          "operation": "set",
+          "change": 0
+        }
+      ]      
+    }
+  },
+
+  "drop": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action" :{
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.vex.charge",
+          "volume": 1,
+          "pitch": 0.5
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.vex.death",
+          "volume": 1,
+          "pitch": 0.5
+        },
+        {
+          "type": "origins:drop_inventory",
+          "slot": "weapon.mainhand",
+          "inventory_type": "inventory"
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_drop",
+          "operation": "set",
+          "change": 0
+        }
+      ]      
+    }
+  },
+
+  "insanity": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity_time",
+          "operation": "set",
+          "change": 100
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_insanity",
+          "operation": "set",
+          "change": 0
+        }
+      ]
+    }
+  },
+
+  "hallucinations": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:choice",
+          "actions": [
+            {
+              "weight": 33,
+              "element": {
+                "type": "origins:spawn_entity",
+                "entity_type": "minecraft:zombie",
+                "tag": "{Invulnerable:true, NoAI:1b}",
+                "entity_action": {
+                  "type": "origins:and",
+                  "actions": [
+                    {
+                      "type": "origins:random_teleport",
+                      "area_width": 10,
+                      "area_height": 5
+                    },
+                    {
+                      "type": "origins:execute_command",
+                      "command": "tp @s ~ ~ ~ facing entity @p[tag=silvafox_kitsune.possessed]"
+                    },
+                    {
+                      "type": "origins:delay",
+                      "ticks": 100,
+                      "action": {
+                        "type": "origins:execute_command",
+                        "command": "kill @s"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_hallucinations",
+          "operation": "set",
+          "change": 0
+        }
+      ]
+    }
+  },
+
+  "drop_armor": {
+    "type": "origins:resource",
+    "hud_render": {"should_render": false},
+    "min": 0,
+    "max": 1,
+    "max_action": {
+      "type": "origins:and",
+      "actions": [
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.vex.charge",
+          "volume": 1,
+          "pitch": 0.5
+        },
+        {
+          "type": "origins:play_sound",
+          "sound": "minecraft:entity.vex.death",
+          "volume": 1,
+          "pitch": 0.5
+        },
+        {
+          "type": "origins:choice",
+          "actions": [
+            {
+              "weight": 25,
+              "element": {
+                "type": "origins:drop_inventory",
+                "slot": "armor.head",
+                "inventory_type": "inventory"
+              }
+            },
+            {
+              "weight": 25,
+              "element": {
+                "type": "origins:drop_inventory",
+                "slot": "armor.chest",
+                "inventory_type": "inventory"
+              }
+            },
+            {
+              "weight": 25,
+              "element": {
+                "type": "origins:drop_inventory",
+                "slot": "armor.legs",
+                "inventory_type": "inventory"
+              }
+            },
+            {
+              "weight": 25,
+              "element": {
+                "type": "origins:drop_inventory",
+                "slot": "armor.feet",
+                "inventory_type": "inventory"
+              }
+            }
+          ]
+        },
+        {
+          "type": "origins:change_resource",
+          "resource": "silvafox_kitsune:possessed_drop_armor",
+          "operation": "set",
+          "change": 0
+        }
+      ]
+    }
+  }
+}
